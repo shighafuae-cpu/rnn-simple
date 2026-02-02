@@ -22,11 +22,11 @@ def preprocess_text(text):
     padded_review = sequence.pad_sequences([encoded_review], maxlen=500)
     return padded_review
 
-# def predict_sentiment(review):
-#     preproc_sent = preprocess_text(review)
-#     prediction = model.predict(preproc_sent)
-#     sentiment = 'Positive' if prediction[0][0] > 0.5 else 'Negative'
-#     return sentiment, prediction[0][0]
+def predict_sentiment(review):
+    preproc_sent = preprocess_text(review)
+    prediction = model.predict(preproc_sent)
+    sentiment = 'Positive' if prediction[0][0] > 0.5 else 'Negative'
+    return sentiment, prediction[0][0]
 
 
 ## Stremlit app
@@ -36,8 +36,8 @@ st.write('Enter a movie review to classify it as p or n.')
 user_input = st.text_area('Movie Review')
 if st.button('Classify'):
     preprocess_value = preprocess_text(user_input)
-    #predict = model.predict(preprocess_value)
-    #st.write(predict)
+    predict = model.predict(preprocess_value)
+    st.write(predict)
 
 else:
     st.write('Please enter a movie review.')
